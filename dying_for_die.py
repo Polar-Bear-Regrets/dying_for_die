@@ -81,6 +81,17 @@ def craftable_cb_s(A):
         return [0, 0 , 1, 0, 10, 10, 10, "venus", "roll double the dice if you have more than 1 meat"]
     elif A == 15:
         return [1, 1, 20, 1, 1, 1, 7, "earth", "passively provides fruit"]
+    elif A == 16:
+        return [0, 36, 0, 36, 0, 0, 0, "saturn", "provides a six and a a three."]
+    elif A == 17:
+        return [0, 10, 30, 1, 10, 5, 1, "neptune", "rolls 3 3's"]
+    elif A == 18:
+        return [10, 10, 50, 40, 5, 0, 0, "pluto","gain 6 blood everytime you roll a one."]
+    elif A == 19:
+        return [50, 50, 50, 50, 10, 10, 10, "eris","everytime you roll a 6 or 1, roll another die."]
+    elif A == 20:
+        return [0, 0, 50, 0, 0, 0, 0, "new moon", "for every empty celestial slot, roll 5 die"]
+
 
 
 
@@ -449,68 +460,58 @@ if __name__ == "__main__":
                         #main combat loop, you add dice rolls in a list and do an "if" for every cb
                         #remember to put a event in BOTH the loops, or not
                         dice_rolls = []
-                        if 6 in cb_s:
-                            dice_rolls += [1] * 6
                         x = 3
-                        if cb_1 == 5:
+                        if 20 in cb_s and cb_5 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_4 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_3 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_2 == 0:
+                            x += 5
+                        if 17 in cb_s:
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                        if 6 in cb_s:
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            if 18 in cb_s:
+                                blood += 36
+                        if 16 in cb:
+                            dice_rolls.append(6, 3)
+                            if 19 in cb_s:
+                                x += 1
+                        if 5 in cb_s:
                             x += 4
-                        elif cb_2 == 5:
+                        if 7 in cb_s:
                             x += 4
-                        elif cb_3 == 5:
-                            x += 4
-                        elif cb_4 == 5:
-                            x += 4
-                        elif cb_5 == 5:
-                            x += 4
-                        if cb_1 == 7:
-                            x += 4
-                        elif cb_2 == 7:
-                            x += 4
-                        elif cb_3 == 7:
-                            x += 4
-                        elif cb_4 == 7:
-                            x += 4
-                        elif cb_5 == 7:
-                            x += 4
-                        if cb_1 == 8:
+                        if 8 in cb_s:
                             for i in range(0,rocks,10):
+                                x  += 1
+                        if 10 in cb_s:
+                            for i in range(0, atlas, 1):
                                 x += 1
-                        elif cb_2 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_3 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_4 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_5 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        if cb_1 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_2 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_3 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_4 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_5 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_s.count(14) >= 1 and meat > 1:
+                        if 12 in cb_s:
+                            dice_rolls.append(6)
+                            dice_rolls.append(6)
+                            if 19 in cb_s:
+                                x += 2
+                        if 14 in cb_s and meat > 0:
                             x *= 2
-                        if cb_s.count(12) >= 1:
-                            dice_rolls.append(6)
-                            dice_rolls.append(6)
                         for i in range(0,x,1):
                             d = (random.randint(1, 6))
                             print("you rolled a", d)
                             dice_rolls.append(d)
+                            if d == 1 and 18 in cb_s:
+                                blood += 6
+                            if d == 1 or d == 6:
+                                if 19 in cb_s:
+                                    continue
                         if c == 1:
                             if dice_rolls.count(a[0]) >= a[1]:
                                 meat += a[2]
@@ -653,68 +654,58 @@ if __name__ == "__main__":
                         # main combat loop, you add dice rolls in a list and do an "if" for every cb
                         # remember to put a event in BOTH the loops, or not
                         dice_rolls = []
-                        if 6 in cb_s:
-                            dice_rolls += [1] * 6
                         x = 3
-                        if cb_1 == 5:
-                            x += 4
-                        elif cb_2 == 5:
-                            x += 4
-                        elif cb_3 == 5:
-                            x += 4
-                        elif cb_4 == 5:
-                            x += 4
-                        elif cb_5 == 5:
-                            x += 4
-                        if cb_1 == 7:
-                            x += 4
-                        elif cb_2 == 7:
-                            x += 4
-                        elif cb_3 == 7:
-                            x += 4
-                        elif cb_4 == 7:
-                            x += 4
-                        elif cb_5 == 7:
-                            x += 4
-                        if cb_1 == 8:
-                            for i in range(0, rocks, 10):
+                        if 20 in cb_s and cb_5 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_4 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_3 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_2 == 0:
+                            x += 5
+                        if 17 in cb_s:
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                        if 6 in cb_s:
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            if 18 in cb_s:
+                                blood += 36
+                        if 16 in cb:
+                            dice_rolls.append(6, 3)
+                            if 19 in cb_s:
                                 x += 1
-                        elif cb_2 == 8:
-                            for i in range(0, rocks, 10):
+                        if 5 in cb_s:
+                            x += 4
+                        if 7 in cb_s:
+                            x += 4
+                        if 8 in cb_s:
+                            for i in range(0,rocks,10):
+                                x  += 1
+                        if 10 in cb_s:
+                            for i in range(0, atlas, 1):
                                 x += 1
-                        elif cb_3 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_4 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_5 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        if cb_1 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_2 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_3 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_4 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_5 == 10:
-                            for i in range (0,atlas,1):
-                                x += 1
-                        if cb_s.count(14) >= 1 and meat > 1:
+                        if 12 in cb_s:
+                            dice_rolls.append(6)
+                            dice_rolls.append(6)
+                            if 19 in cb_s:
+                                x += 2
+                        if 14 in cb_s and meat > 0:
                             x *= 2
-                        if cb_s.count(12) >= 1:
-                            dice_rolls.append(6)
-                            dice_rolls.append(6)
                         for i in range(0, x, 1):
                             d = (random.randint(1, 6))
                             print("you rolled a", d)
                             dice_rolls.append(d)
+                            if d == 1 and 18 in cb_s:
+                                blood += 6
+                            if d == 1 or d == 6:
+                                if 19 in cb_s:
+                                    continue
                         if c == 1:
                             if dice_rolls.count(a[0]) >= a[1]:
                                 meat += a[2]
@@ -854,68 +845,58 @@ if __name__ == "__main__":
                         # main combat loop, you add dice rolls in a list and do an "if" for every cb
                         # remember to put a event in BOTH the loops, or not
                         dice_rolls = []
-                        if 6 in cb_s:
-                            dice_rolls += [1] * 6
                         x = 3
-                        if cb_1 == 5:
-                            x += 4
-                        elif cb_2 == 5:
-                            x += 4
-                        elif cb_3 == 5:
-                            x += 4
-                        elif cb_4 == 5:
-                            x += 4
-                        elif cb_5 == 5:
-                            x += 4
-                        if cb_1 == 7:
-                            x += 4
-                        elif cb_2 == 7:
-                            x += 4
-                        elif cb_3 == 7:
-                            x += 4
-                        elif cb_4 == 7:
-                            x += 4
-                        elif cb_5 == 7:
-                            x += 4
-                        if cb_1 == 8:
-                            for i in range(0, rocks, 10):
+                        if 20 in cb_s and cb_5 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_4 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_3 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_2 == 0:
+                            x += 5
+                        if 17 in cb_s:
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                        if 6 in cb_s:
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            if 18 in cb_s:
+                                blood += 36
+                        if 16 in cb:
+                            dice_rolls.append(6, 3)
+                            if 19 in cb_s:
                                 x += 1
-                        elif cb_2 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_3 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_4 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_5 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        if cb_1 == 10:
+                        if 5 in cb_s:
+                            x += 4
+                        if 7 in cb_s:
+                            x += 4
+                        if 8 in cb_s:
+                            for i in range(0,rocks,10):
+                                x  += 1
+                        if 10 in cb_s:
                             for i in range(0, atlas, 1):
                                 x += 1
-                        if cb_2 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_3 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_4 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_5 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_s.count(14) >= 1 and meat > 1:
+                        if 12 in cb_s:
+                            dice_rolls.append(6)
+                            dice_rolls.append(6)
+                            if 19 in cb_s:
+                                x += 2
+                        if 14 in cb_s and meat > 0:
                             x *= 2
-                        if cb_s.count(12) >= 1:
-                            dice_rolls.append(6)
-                            dice_rolls.append(6)
                         for i in range(0, x, 1):
                             d = (random.randint(1, 6))
                             print("you rolled a", a)
                             dice_rolls.append(d)
+                            if d == 1 and 18 in cb_s:
+                                blood += 6
+                            if d == 1 or d == 6:
+                                if 19 in cb_s:
+                                    continue
                         if c == 1:
                             if dice_rolls.count(a[0]) >= a[1]:
                                 meat += a[2]
@@ -982,18 +963,6 @@ if __name__ == "__main__":
                         hp -= 1
                     if hunger < 0:
                         hp -= 1
-                    if cb_1 == 2:
-                        thirst += 1
-                    #rainclouds
-                    elif cb_2  == 2:
-                        thirst += 1
-                    elif cb_3 == 2:
-                        thirst += 1
-                    elif cb_4 == 2:
-                        thirst += 1
-                    elif cb_5 == 2:
-                        thirst += 2
-                    #end of rainclouds
                     print("hp:", hp, "hunger:", hunger, "sanity:", sanity, "insulation:", insulation)
                     while True:
                         activity = int(input(
@@ -1070,68 +1039,59 @@ if __name__ == "__main__":
                         # main combat loop, you add dice rolls in a list and do an "if" for every cb
                         # remember to put a event in BOTH the loops, or not
                         dice_rolls = []
-                        if 6 in cb_s:
-                            dice_rolls += [1] * 6
+
                         x = 3
-                        if cb_1 == 5:
-                            x += 4
-                        elif cb_2 == 5:
-                            x += 4
-                        elif cb_3 == 5:
-                            x += 4
-                        elif cb_4 == 5:
-                            x += 4
-                        elif cb_5 == 5:
-                            x += 4
-                        if cb_1 == 7:
-                            x += 4
-                        elif cb_2 == 7:
-                            x += 4
-                        elif cb_3 == 7:
-                            x += 4
-                        elif cb_4 == 7:
-                            x += 4
-                        elif cb_5 == 7:
-                            x += 4
-                        if cb_1 == 8:
-                            for i in range(0, rocks, 10):
+                        if 20 in cb_s and cb_5 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_4 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_3 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_2 == 0:
+                            x += 5
+                        if 17 in cb_s:
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                        if 6 in cb_s:
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            if 18 in cb_s:
+                                blood += 36
+                        if 16 in cb:
+                            dice_rolls.append(6, 3)
+                            if 19 in cb_s:
                                 x += 1
-                        elif cb_2 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_3 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_4 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_5 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        if cb_1 == 10:
+                        if 5 in cb_s:
+                            x += 4
+                        if 7 in cb_s:
+                            x += 4
+                        if 8 in cb_s:
+                            for i in range(0,rocks,10):
+                                x  += 1
+                        if 10 in cb_s:
                             for i in range(0, atlas, 1):
                                 x += 1
-                        if cb_2 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_3 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_4 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_5 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_s.count(12) >= 1:
+                        if 12 in cb_s:
                             dice_rolls.append(6)
                             dice_rolls.append(6)
-                        if cb_s.count(14) >= 1 and meat > 1:
+                            if 19 in cb_s:
+                                x += 2
+                        if 14 in cb_s and meat > 0:
                             x *= 2
                         for i in range(0, x, 1):
                             d = (random.randint(1, 6))
                             print("you rolled a", a)
                             dice_rolls.append(d)
+                            if d == 1 and 18 in cb_s:
+                                blood += 6
+                            if d == 1 or d == 6:
+                                if 19 in cb_s:
+                                    continue
                         if c == 1:
                             if dice_rolls.count(a[0]) >= a[1]:
                                 meat += a[2]
@@ -1267,68 +1227,58 @@ if __name__ == "__main__":
                         # main combat loop, you add dice rolls in a list and do an "if" for every cb
                         # remember to put a event in BOTH the loops, or not
                         dice_rolls = []
-                        if 6 in cb_s:
-                            dice_rolls += [1] * 6
                         x = 3
-                        if cb_1 == 5:
-                            x += 4
-                        elif cb_2 == 5:
-                            x += 4
-                        elif cb_3 == 5:
-                            x += 4
-                        elif cb_4 == 5:
-                            x += 4
-                        elif cb_5 == 5:
-                            x += 4
-                        if cb_1 == 7:
-                            x += 4
-                        elif cb_2 == 7:
-                            x += 4
-                        elif cb_3 == 7:
-                            x += 4
-                        elif cb_4 == 7:
-                            x += 4
-                        elif cb_5 == 7:
-                            x += 4
-                        if cb_1 == 8:
-                            for i in range(0, rocks, 10):
+                        if 20 in cb_s and cb_5 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_4 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_3 == 0:
+                            x += 5
+                        if 20 in cb_s and cb_2 == 0:
+                            x += 5
+                        if 17 in cb_s:
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                            dice_rolls.append(3)
+                        if 6 in cb_s:
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            dice_rolls.append(1)
+                            if 18 in cb_s:
+                                blood += 36
+                        if 16 in cb:
+                            dice_rolls.append(6, 3)
+                            if 19 in cb_s:
                                 x += 1
-                        elif cb_2 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_3 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_4 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        elif cb_5 == 8:
-                            for i in range(0, rocks, 10):
-                                x += 1
-                        if cb_1 == 10:
+                        if 5 in cb_s:
+                            x += 4
+                        if 7 in cb_s:
+                            x += 4
+                        if 8 in cb_s:
+                            for i in range(0,rocks,1):
+                                x  += 1
+                        if 10 in cb_s:
                             for i in range(0, atlas, 1):
                                 x += 1
-                        if cb_2 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_3 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_4 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_5 == 10:
-                            for i in range(0, atlas, 1):
-                                x += 1
-                        if cb_s.count(14) >= 1 and meat > 1:
+                        if 12 in cb_s:
+                            dice_rolls.append(6)
+                            dice_rolls.append(6)
+                            if 19 in cb_s:
+                                x += 2
+                        if 14 in cb_s and meat > 0:
                             x *= 2
-                        if cb_s.count(12) >= 1:
-                            dice_rolls.append(6)
-                            dice_rolls.append(6)
                         for i in range(0, x, 1):
                             d = (random.randint(1, 6))
                             print("you rolled a", a)
                             dice_rolls.append(d)
+                            if d == 1 and 18 in cb_s:
+                                blood += 6
+                            if d == 1 or d == 6:
+                                if 19 in cb_s:
+                                    continue
                         if c == 1:
                             if dice_rolls.count(a[0]) >= a[1]:
                                 meat += a[2]
