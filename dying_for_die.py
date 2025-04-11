@@ -1,4 +1,4 @@
-from random import random
+import random
 
 
 def dead():
@@ -367,7 +367,7 @@ if __name__ == "__main__":
         day = 0
         year += 1
         while day < 31:
-            day =+ 1
+            day += 1
             #the fall loop
             if True:
                 apply_passive_cb_s()
